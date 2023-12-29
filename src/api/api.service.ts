@@ -1,26 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { CreateApiDto } from './dto/create-api.dto';
 import { UpdateApiDto } from './dto/update-api.dto';
+import { JsonplaceholdersService } from 'src/jsonplaceholders/jsonplaceholders.service';
 
 @Injectable()
 export class ApiService {
-  create(createApiDto: CreateApiDto) {
-    return 'This action adds a new api';
+  constructor(private jsonPlaceHolderService: JsonplaceholdersService) {}
+  async create(createApiDto: CreateApiDto): Promise<CreateApiDto> {
+    return await this.jsonPlaceHolderService.create(createApiDto);
   }
 
-  findAll() {
-    return `This action returns all api`;
+  async findAll(): Promise<CreateApiDto[]> {
+    return this.jsonPlaceHolderService.findAll();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} api`;
+    return this.jsonPlaceHolderService.findOne(id);
   }
 
   update(id: number, updateApiDto: UpdateApiDto) {
-    return `This action updates a #${id} api`;
+    return this.jsonPlaceHolderService.update(id, updateApiDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} api`;
+    return this.jsonPlaceHolderService.remove(id);
   }
 }

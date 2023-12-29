@@ -16,12 +16,12 @@ export class ApiController {
   constructor(private readonly apiService: ApiService) {}
 
   @Post()
-  create(@Body() createApiDto: CreateApiDto) {
-    return this.apiService.create(createApiDto);
+  async create(@Body() createApiDto: CreateApiDto): Promise<CreateApiDto> {
+    return await this.apiService.create(createApiDto);
   }
 
   @Get()
-  findAll() {
+  async findAll(): Promise<CreateApiDto[]> {
     return this.apiService.findAll();
   }
 
