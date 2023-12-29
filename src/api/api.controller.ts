@@ -26,8 +26,8 @@ export class ApiController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.apiService.findOne(+id);
+  async findOne(@Param('id') id: string): Promise<CreateApiDto> {
+    return await this.apiService.findOne(+id);
   }
 
   @Patch(':id')

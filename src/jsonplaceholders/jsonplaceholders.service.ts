@@ -38,8 +38,14 @@ export class JsonplaceholdersService {
     return (await result).data;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} jsonplaceholder`;
+  async findOne(id: number): Promise<CreateApiDto> {
+    const baseUrl = this.configService.get<string>('JSONPLACEHOLDER_BASE_URL');
+
+    const response = this.httpService.get(baseUrl + id);
+
+    const result = firstValueFrom(response);
+
+    return (await result).data;
   }
 
   update(id: number, updateApiDto: UpdateApiDto) {

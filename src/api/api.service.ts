@@ -11,11 +11,11 @@ export class ApiService {
   }
 
   async findAll(): Promise<CreateApiDto[]> {
-    return this.jsonPlaceHolderService.findAll();
+    return await this.jsonPlaceHolderService.findAll();
   }
 
-  findOne(id: number) {
-    return this.jsonPlaceHolderService.findOne(id);
+  async findOne(id: number): Promise<CreateApiDto> {
+    return await this.jsonPlaceHolderService.findOne(id);
   }
 
   update(id: number, updateApiDto: UpdateApiDto) {
