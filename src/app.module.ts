@@ -1,12 +1,8 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { DogsModule } from './dogs/dogs.module';
-import { logger } from './dogs/middleware/logger.middleware';
+import { Module } from '@nestjs/common';
+import { ApiModule } from './api/api.module';
+import { JsonplaceholdersModule } from './jsonplaceholders/jsonplaceholders.module';
 
 @Module({
-  imports: [DogsModule],
+  imports: [ApiModule, JsonplaceholdersModule],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(logger).forRoutes('dogs');
-  }
-}
+export class AppModule {}
