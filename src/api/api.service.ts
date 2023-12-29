@@ -18,8 +18,8 @@ export class ApiService {
     return await this.jsonPlaceHolderService.findOne(id);
   }
 
-  update(id: number, updateApiDto: UpdateApiDto) {
-    return this.jsonPlaceHolderService.update(id, updateApiDto);
+  async update(id: number, updateApiDto: UpdateApiDto): Promise<CreateApiDto> {
+    return await this.jsonPlaceHolderService.update(id, updateApiDto);
   }
 
   remove(id: number) {

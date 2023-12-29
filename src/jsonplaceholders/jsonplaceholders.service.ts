@@ -48,8 +48,21 @@ export class JsonplaceholdersService {
     return (await result).data;
   }
 
-  update(id: number, updateApiDto: UpdateApiDto) {
-    return `This action updates a #${id} jsonplaceholder`;
+  async update(id: number, updateApiDto: UpdateApiDto): Promise<CreateApiDto> {
+    const baseUrl = this.configService.get<string>('JSONPLACEHOLDER_BASE_URL');
+
+    const request = {
+      id: updateApiDto.id,
+      title: updateApiDto.title,
+      body: updateApiDto.body,
+      userId: updateApiDto.userId,
+    };
+
+    const response = this.httpService.patch(baseUrl + id, request);
+
+    const result = firstValueFrom(response);
+
+    return (await result).data;
   }
 
   remove(id: number) {

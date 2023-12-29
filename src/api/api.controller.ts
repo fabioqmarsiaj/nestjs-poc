@@ -31,8 +31,11 @@ export class ApiController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateApiDto: UpdateApiDto) {
-    return this.apiService.update(+id, updateApiDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateApiDto: UpdateApiDto,
+  ): Promise<CreateApiDto> {
+    return await this.apiService.update(+id, updateApiDto);
   }
 
   @Delete(':id')
