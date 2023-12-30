@@ -52,18 +52,30 @@ describe('JsonplaceholdersService', () => {
     jest.resetAllMocks();
   });
 
+  it('should create a register', async () => {
+    const expected = { id: 1, title: 'foo', body: 'bar', userId: 2 };
+
+    configService.get = jest.fn().mockReturnValueOnce('any');
+    httpService.post = mockResponse(expected);
+
+    const actual = await service.create(expected);
+
+    expect(actual).toBeDefined();
+    expect(actual).toEqual(expected);
+  });
+
   it('should return all registers', async () => {
-    const response = [
+    const expected = [
       { id: 1, title: 'foo', body: 'bar', userId: 2 },
       { id: 2, title: 'foo', body: 'bar', userId: 3 },
     ];
 
     configService.get = jest.fn().mockReturnValueOnce('any');
-    httpService.get = mockResponse(response);
+    httpService.get = mockResponse(expected);
 
-    const actualResponse = await service.findAll();
+    const actual = await service.findAll();
 
-    expect(actualResponse).toBeDefined();
-    expect(actualResponse).toEqual(response);
+    expect(actual).toBeDefined();
+    expect(actual).toEqual(expected);
   });
 });
