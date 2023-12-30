@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateApiDto } from './dto/create-api.dto';
 import { UpdateApiDto } from './dto/update-api.dto';
-import { JsonplaceholdersService } from 'src/jsonplaceholders/jsonplaceholders.service';
+import { JsonplaceholdersService } from '../jsonplaceholders/jsonplaceholders.service';
 
 @Injectable()
 export class ApiService {
