@@ -22,7 +22,7 @@ export class ApiService {
     return await this.jsonPlaceHolderService.update(id, updateApiDto);
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return this.jsonPlaceHolderService.remove(id);
   }
 }

@@ -33,7 +33,7 @@ export class JsonplaceholdersService {
 
     const response = this.httpService.get(baseUrl);
 
-    const result = firstValueFrom(response);
+    const result = lastValueFrom(response);
 
     return (await result).data;
   }
@@ -65,7 +65,13 @@ export class JsonplaceholdersService {
     return (await result).data;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} jsonplaceholder`;
+  async remove(id: number) {
+    const baseUrl = this.configService.get<string>('JSONPLACEHOLDER_BASE_URL');
+
+    const response = this.httpService.delete(baseUrl + id);
+
+    const result = firstValueFrom(response);
+
+    return (await result).data;
   }
 }

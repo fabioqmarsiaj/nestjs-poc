@@ -39,7 +39,7 @@ export class ApiController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.apiService.remove(+id);
   }
 }
